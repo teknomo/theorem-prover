@@ -21,9 +21,15 @@ import TheoremProver as thp
 
 # Graphical User Interface
 You can also run the graphical user interface using
-> python *guiProver.py*
-> 
+
+> **python *guiProver.py* **
+>
+Here is an example 
 ![GUI](https://github.com/teknomo/theorem-prover/blob/master/Prover1.jpg)
+![GUI](https://github.com/teknomo/theorem-prover/blob/master/Prover2.jpg)
+
+The GUI will run statements. Each statement should be in one line without comma and without quote.
+
 
 # Function and Mode
 
