@@ -951,7 +951,7 @@ thp.interactive()
 
 ```
 
-last update: September 2017
+last update: March 2021
 
 Cite this tutorial as:
 Teknomo,K. (2017) Tutorial on Automatic Theorem Prover (http://people.revoledu.com/kardi/tutorial/Python/)
@@ -960,6 +960,6 @@ See Also: [Python for Data Science](http://people.revoledu.com/kardi/tutorial/Py
 
 Visit [www.Revoledu.com](http://people.revoledu.com/kardi/tutorial/) for more tutorials in Data Science
 
-Copyright © 2017 [Kardi Teknomo](http://people.revoledu.com/kardi/)
+Copyright © 2017-2021 [Kardi Teknomo](http://people.revoledu.com/kardi/)
 
 Permission is granted to share this notebook as long as the copyright notice is intact.
