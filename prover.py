@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # 2014 Stephan Boyer
+# 2021 Kardi Teknomo
 
 from language import *
 
@@ -138,6 +139,10 @@ class Sequent:
 # returns True if the sequent is provable
 # returns False or loops forever if the sequent is not provable
 def proveSequent(sequent):
+    
+  #initialize output
+  output=[]
+  
   # reset the time for each formula in the sequent
   for formula in sequent.left:
     formula.setInstantiationTime(0)
@@ -157,6 +162,7 @@ def proveSequent(sequent):
       old_sequent = frontier.pop(0)
     if old_sequent is None:
       break
+    output.append('%s. %s' % (old_sequent.depth, old_sequent))
     print('%s. %s' % (old_sequent.depth, old_sequent))
 
     # check if this sequent is axiomatically true without unification
@@ -195,6 +201,7 @@ def proveSequent(sequent):
         if substitution is not None:
           for k, v in substitution.items():
             print('  %s = %s' % (k, v))
+            output.append('  %s = %s' % (k, v))
           proven |= old_sequent.siblings
           frontier = [sequent for sequent in frontier
             if sequent not in old_sequent.siblings]
@@ -231,7 +238,7 @@ def proveSequent(sequent):
         else:
           apply_right = True
       if left_formula is None and right_formula is None:
-        return False
+        return False,output
 
       # apply a left rule
       if apply_left:
@@ -466,7 +473,7 @@ def proveSequent(sequent):
           break
 
   # no more sequents to prove
-  return True
+  return True,output
 
 # returns True if the formula is provable
 # returns False or loops forever if the formula is not provable

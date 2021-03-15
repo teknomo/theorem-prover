@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # 2014 Stephan Boyer
-# 2017 Kardi Teknomo
+# 2017, 2021 Kardi Teknomo 
 
 from prover import *
 
@@ -354,35 +354,38 @@ def check_formula(formula):
 
 
 def help():
-  print('First-Order Logic Theorem Prover')
-  print('2014 Stephan Boyer')
-  print('2017 Kardi Teknomo')
-  print('')
-  print('Terms:')
-  print('')
-  print('  x               (variable)')
-  print('  f(term, ...)    (function)')
-  print('')
-  print('Formulae:')
-  print('')
-  print('  P(term)        (predicate)')
-  print('  not P          (complement)')
-  print('  P or Q         (disjunction)')
-  print('  P and Q        (conjunction)')
-  print('  P implies Q    (implication)')
-  print('  forall x. P(x) (universal quantification)')
-  print('  exists x. P(x) (existential quantification)')
-  print('')
-  print('Enter formulae at the prompt. The following commands ' \
-    'are also available for manipulating axioms:')
-  print('')
-  print('  axioms              (list axioms)')
-  print('  lemmas              (list lemmas)')
-  print('  axiom <formula>     (add an axiom)')
-  print('  lemma <formula>     (prove and add a lemma)')
-  print('  remove <formula>    (remove an axiom or lemma)')
-  print('  reset               (remove all axioms and lemmas)')
-  print('  quit                (quit the program)')
+    s=""
+    s=s+'First-Order Logic Theorem Prover'+'\n'
+    s=s+'2014 Stephan Boyer'+'\n'
+    s=s+'2017,2021 Kardi Teknomo'+'\n'
+    s=s+''+'\n'
+    s=s+'Terms:'+'\n'
+    s=s+''+'\n'
+    s=s+'  x               (variable)'+'\n'
+    s=s+'  f(term, ...)    (function)'+'\n'
+    s=s+''+'\n'
+    s=s+'Formulae:'+'\n'
+    s=s+''+'\n'
+    s=s+'  P(term)        (predicate)'+'\n'
+    s=s+'  not P          (complement)'+'\n'
+    s=s+'  P or Q         (disjunction)'+'\n'
+    s=s+'  P and Q        (conjunction)'+'\n'
+    s=s+'  P implies Q    (implication)'+'\n'
+    s=s+'  forall x. P(x) (universal quantification)'+'\n'
+    s=s+'  exists x. P(x) (existential quantification)'+'\n'
+    s=s+''+'\n'
+    s=s+'Enter formulae at the prompt. The following commands ' \
+    'are also available for manipulating axioms:'+'\n'
+    s=s+''+'\n'
+    s=s+'  axioms              (list axioms)'+'\n'
+    s=s+'  lemmas              (list lemmas)'+'\n'
+    s=s+'  axiom <formula>     (add an axiom)'+'\n'
+    s=s+'  lemma <formula>     (prove and add a lemma)'+'\n'
+    s=s+'  remove <formula>    (remove an axiom or lemma)'+'\n'
+    s=s+'  reset               (remove all axioms and lemmas)'+'\n'
+    s=s+'  quit                (quit the program)'+'\n'
+    print(s)
+    return s
 
 def interactive():
   axioms = set()
@@ -478,6 +481,7 @@ def prove(statement):
 
   axioms = set()
   lemmas = {}
+  output=""
   for inp in statement:
     try:
       commands = ['axiom', 'lemma', 'axioms', 'lemmas', 'remove', 'reset']
@@ -490,25 +494,30 @@ def prove(statement):
         if len(tokens) > 1:
           raise InvalidInputError('Unexpected: %s.' % tokens[1])
         for axiom in axioms:
+          output=output+axiom+"\n"
           print(axiom)
       elif len(tokens) > 0 and tokens[0] == 'lemmas':
         if len(tokens) > 1:
           raise InvalidInputError('Unexpected: %s.' % tokens[1])
         for lemma in lemmas:
+          output=output+lemma+'\n'
           print(lemma)
       elif len(tokens) > 0 and tokens[0] == 'axiom':
         formula = parse(tokens[1:])
         check_formula(formula)
         axioms.add(formula)
+        output=output+ 'Axiom added: %s.' % formula+'\n'
         print('Axiom added: %s.' % formula)
       elif len(tokens) > 0 and tokens[0] == 'lemma':
         formula = parse(tokens[1:])
         check_formula(formula)
-        result = proveFormula(axioms | set(lemmas.keys()), formula)
+        result,proof = proveFormula(axioms | set(lemmas.keys()), formula)
         if result:
           lemmas[formula] = axioms.copy()
+          output=output+'Lemma proven: %s.' % formula+'\n'
           print('Lemma proven: %s.' % formula)
         else:
+          output=output+'Lemma unprovable: %s.' % formula+'\n'
           print('Lemma unprovable: %s.' % formula)
       elif len(tokens) > 0 and tokens[0] == 'remove':
         formula = parse(tokens[1:])
@@ -521,21 +530,28 @@ def prove(statement):
               bad_lemmas.append(lemma)
           for lemma in bad_lemmas:
             del lemmas[lemma]
+          output=output+'Axiom removed: %s.' % formula+'\n'
           print('Axiom removed: %s.' % formula)
           if len(bad_lemmas) == 1:
+            output=output+'This lemma was proven using that ' \
+              'axiom and was also removed:'+'\n'
             print('This lemma was proven using that ' \
               'axiom and was also removed:')
             for lemma in bad_lemmas:
+              output=output+'  %s' % lemma+'\n'
               print('  %s' % lemma)
           if len(bad_lemmas) > 1:
             print('These lemmas were proven using that ' \
               'axiom and were also removed:')
             for lemma in bad_lemmas:
+              output=output+'  %s' % lemma+'\n'
               print('  %s' % lemma)
         elif formula in lemmas:
           del lemmas[formula]
+          output=output+'Lemma removed: %s.' % formula+'\n'
           print('Lemma removed: %s.' % formula)
         else:
+          output=output+'Not an axiom: %s.' % formula+'\n'
           print('Not an axiom: %s.' % formula)
       elif len(tokens) > 0 and tokens[0] == 'reset':
         if len(tokens) > 1:
@@ -545,18 +561,23 @@ def prove(statement):
       else:
         formula = parse(tokens)
         check_formula(formula)
-        result = proveFormula(axioms | set(lemmas.keys()), formula)
+        result,proof = proveFormula(axioms | set(lemmas.keys()), formula)
         if result:
+          output=output+'Formula proven: %s.' % formula+'\n'
           print('Formula proven: %s.' % formula)
         else:
+          output=output+'Formula unprovable: %s.' % formula+'\n'
           print('Formula unprovable: %s.' % formula)
     except InvalidInputError as e:
+      output=e.message
       print(e.message)
     except KeyboardInterrupt:
       pass
     except EOFError:
+      output=""
       print('')
       break
+  return output,proof
 
 
 
