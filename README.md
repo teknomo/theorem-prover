@@ -8,7 +8,7 @@ Automatic Theorem Prover is a program to prove a given a set of axioms and lemma
 The original Python code of this [Theorem Prover](https://github.com/stepchowfun/theorem-prover) was developed by [*Stephan Boyer*](https://www.stephanboyer.com/). I fixed some minor bugs, help to improve the user experience and usability by providing wrapper functions such that it can be used in Jupyter notebook. This notebook should also be used as the documentation.
 
 # Download
-The full code and this documentation can be downloaded from [GitHub](https://github.com/teknomo/theorem-prover). 
+The full code and this documentation can be downloaded from [GitHub](https://github.com/teknomo/theorem-prover) or [Revoledu](https://people.revoledu.com/kardi/tutorial/Python/Tutorial+on+Automatic+Theorem+Prover.html). 
 
 
 # TheoremProver Module
@@ -18,6 +18,11 @@ After you have download all the modules from [GitHub](https://github.com/teknomo
 ```python
 import TheoremProver as thp
 ```
+
+# Graphical User Interface
+You can also run the graphical user interface using
+> python *guiProver.py* 
+>
 
 # Function and Mode
 
