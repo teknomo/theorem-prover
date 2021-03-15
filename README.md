@@ -19,7 +19,7 @@ After you have download all the modules from [GitHub](https://github.com/teknomo
 import TheoremProver as thp
 ```
 
-See tutorial below for the description to use it into your own code.
+See tutorial [below](#tutorial) for the description to use it into your own code.
 
 
 # Graphical User Interface
