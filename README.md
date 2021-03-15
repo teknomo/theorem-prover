@@ -5,19 +5,22 @@ by [*Kardi Teknomo*](http://people.revoledu.com/kardi/tutorial/)
 
 Automatic Theorem Prover is a program to prove a given a set of axioms and lemmas in first order logic. The proof process would be shown in nice mathematics format.
 
-The original Python code of this [Theorem Prover](https://github.com/stepchowfun/theorem-prover) was developed by [*Stephan Boyer*](https://www.stephanboyer.com/). I fixed some minor bugs, help to improve the user experience and usability by providing wrapper functions such that it can be used in Jupyter notebook. This notebook should also be used as the documentation.
+The original Python code of this [Theorem Prover](https://github.com/stepchowfun/theorem-prover) was developed by [*Stephan Boyer*](https://www.stephanboyer.com/). I fixed some minor bugs, help to improve the user experience and usability by providing wrapper functions such that it can be used in Jupyter notebook. I also added simple graphical user interface. This notebook should also be used as the documentation and tutorial.
 
 # Download
 The full code and this documentation can be downloaded from [GitHub](https://github.com/teknomo/theorem-prover) or [Revoledu](https://people.revoledu.com/kardi/tutorial/Python/Tutorial+on+Automatic+Theorem+Prover.html). 
 
 
 # TheoremProver Module
-After you have download all the modules from [GitHub](https://github.com/teknomo/theorem-prover), to use the program. First step, you need to import the main module. You need only to import one time.
+After you have download all the modules from [GitHub](https://github.com/teknomo/theorem-prover), to use the program put them into one folder. You can run the user interface *guiProver.py* or you can also run the theorem prover module into your own program. To do the last part, you need to import the main module. You need only to import one time.
 
 
 ```python
 import TheoremProver as thp
 ```
+
+See tutorial below for the description to use it into your own code.
+
 
 # Graphical User Interface
 You can also run simple  graphical user interface of theorem prover using the following command:
@@ -57,7 +60,8 @@ The following commands are useful. They can be used in both interactive mode or 
 + **quit**: to exit interactive mode
 + **exit**: the same as quit, to exit interactive mode
 
-# Proposition
+# Tutorial
+## Proposition
 
 Proposition is a statement that can be only true or false. It cannot be both true and false. Every mathematical statement is assumed to be true or false. 
 
@@ -92,19 +96,19 @@ An *axiom* is a proposition that believe to be always True. Every statement must
 
 A *lemma* is a proposition that supposed to be derived from axioms and other lemma. In Automatic Theorem Prover, an axiom is a formula that start with keyword **lemma**. You use lemma in Automatic Theorem Prover to ask question or query whether the lemma can be proven or not. The goal of Automatic Theorem Prover is to help us to tell whether the lemma is proven or unprovable.
 
-## Debugging Statement
+### Debugging Statement
 When you write your statement, put the lemmas at the end of the proposition list.
 
 To debug your statement, put all propositions as axioms first (without lemma) and then run the statement in Batch Mode. This will give you a clue if there is a typing error or some symbols are not based on your intention. After all the propositions are correct, then you change the last proposition from axioms to lemmas and run again the theorem prover.
 
 
 
-# Batch Mode Theorem Prover
+## Batch Mode Theorem Prover
 
 In this tutorial, we will focus on the batch mode. Each member of the list of proposition can be used in the interaction mode.
 
 
-## Examples
+### Examples
 
 Let us start with a few simple examples of propositions with formulas. After that, we will present examples of proposition with axioms and lemmas. The usage of universal and existensial quantifier will also be introduced.
 
@@ -874,7 +878,7 @@ thp.prove(statement)
     Lemma proven: Hates(mac, pete).
     
 
-# Exercises
+## Exercises
 
 ### Exercise: Cesare
 Here is an example of Cesare (EAE-2) Syllogism.
@@ -898,7 +902,7 @@ Correct the wrong statement below such that it will become correct proof.
 
 > thp.prove(statement)  
 
-# Interactive Mode Theorem Prover
+## Interactive Mode Theorem Prover
 
 If you are in interactive mode, the brief help is provided by this function.
 
