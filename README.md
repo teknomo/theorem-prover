@@ -22,7 +22,7 @@ import TheoremProver as thp
 # Graphical User Interface
 You can also run simple  graphical user interface of theorem prover using the following command:
 
-> **python *guiProver.py* **
+> python *guiProver.py* 
 >
 Here is an example: 
 ![GUI](https://github.com/teknomo/theorem-prover/blob/master/Prover1.jpg)
