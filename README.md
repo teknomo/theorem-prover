@@ -5,7 +5,7 @@ by [*Kardi Teknomo*](http://people.revoledu.com/kardi/tutorial/)
 
 Automatic Theorem Prover is a program to prove a given a set of axioms and lemmas in first order logic. The proof process would be shown in nice mathematics format.
 
-The original Python code of this [Theorem Prover](https://github.com/stepchowfun/theorem-prover) was developed by [*Stephan Boyer*](https://www.stephanboyer.com/). I fixed some minor bugs, help to improve the user experience and usability by providing wrapper functions such that it can be used in Jupyter notebook. I also added simple graphical user interface. This notebook should also be used as the documentation and tutorial.
+The original Python code of this [Theorem Prover](https://github.com/stepchowfun/theorem-prover) was developed by [*Stephan Boyer*](https://www.stephanboyer.com/). I fixed some minor bugs, help to improve the user experience and usability by providing wrapper functions such that it can be used in Jupyter notebook. I also added simple graphical user interface. This notebook should also be used as the documentation and [tutorial](#tutorial).
 
 # Download
 The full code and this documentation can be downloaded from [GitHub](https://github.com/teknomo/theorem-prover) or [Revoledu](https://people.revoledu.com/kardi/tutorial/Python/Tutorial+on+Automatic+Theorem+Prover.html). 
@@ -33,6 +33,8 @@ Here is an example:
 ![GUI](https://github.com/teknomo/theorem-prover/blob/master/Prover2.jpg)
 
 The GUI will run statements. Each statement should be in one line without comma and without quote.
+
+Dependency: you need to install [pysimplegui](https://pypi.org/project/PySimpleGUI/) to run the graphical user interface. 
 
 
 # Function and Mode
